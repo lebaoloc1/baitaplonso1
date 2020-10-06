@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class DictionaryManagement {
@@ -42,6 +44,17 @@ public class DictionaryManagement {
             if (your_word_target.equals(dictionary.getWordTargetOfElement(i))) {
                 System.out.println(dictionary.getWordExplainOfElement(i));
             }
+        }
+    }
+
+    public static void dictionaryExportToFile(Dictionary dictionary) {
+        try {
+            FileWriter my_writer = new FileWriter("outputFile.txt");
+            for (int i = 0;i < dictionary.sizeOfArray();++i)
+                my_writer.write(dictionary.getWordTargetOfElement(i) + "\t" + dictionary.getWordExplainOfElement(i) + "\n");
+            my_writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
